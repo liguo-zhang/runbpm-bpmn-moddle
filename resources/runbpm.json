@@ -1,0 +1,547 @@
+{
+  "name": "RunBPM",
+  "uri": "http://runbpm.org/schema/1.0/bpmn",
+  "prefix": "runbpm",
+  "xml": {
+    "tagAlias": "lowerCase"
+  },
+  "associations": [],
+  "types": [
+        {
+          "name": "InOutBinding",
+          "superClass": [
+            "Element"
+          ],
+          "isAbstract": true,
+          "properties": [
+            {
+              "name": "source",
+              "isAttr": true,
+              "type": "String"
+            },
+            {
+              "name": "sourceExpression",
+              "isAttr": true,
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "isAttr": true,
+              "type": "String"
+            },
+            {
+              "name": "businessKey",
+              "isAttr": true,
+              "type": "String"
+            },
+            {
+              "name": "local",
+              "isAttr": true,
+              "type": "Boolean",
+              "default": false
+            },
+            {
+              "name": "variables",
+              "isAttr": true,
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "In",
+          "superClass": [
+            "InOutBinding"
+          ]
+        },
+        {
+          "name": "Out",
+          "superClass": [
+            "InOutBinding"
+          ]
+        },
+        {
+          "name": "RunBPMExtensionElements",
+          "extends": [
+            "bpmn:ExtensionElements"
+          ],
+          "properties": [
+            {
+              "name": "in",
+              "type": "In",
+              "isMany": true
+            },
+            {
+              "name": "out",
+              "type": "Out",
+              "isMany": true
+            },
+            {
+              "name": "extensionProperties",
+              "type": "ExtensionProperty",
+              "isMany": true
+            },
+            {
+              "name": "resource",
+              "type": "Resource"
+            }
+          ]
+        },
+        {
+          "name": "Resource",
+          "properties": [
+            {
+              "name": "resourcePolicy",
+              "type": "ResourcePolicy"
+            },
+            {
+              "name": "resourceAssignment",
+              "type": "ResourceAssignment"
+            },
+          ]
+        },
+        {
+          "name": "ResourcePolicy",
+          "properties": [
+            {
+              "name": "type",
+              "type": "String",
+              "isAttr": true
+            }
+          ]
+        },
+        {
+          "name": "ResourceAssignment",
+          "properties": [
+            {
+              "name": "values",
+              "type": "ResourceExpression",
+              "isMany": true
+            }
+          ]
+        },
+        {
+          "name": "ResourceExpression",
+          "properties": [
+            {
+              "name": "type",
+              "type": "String",
+              "isAttr": true
+            },
+            {
+              "name": "body",
+              "type": "String",
+              "isBody": true
+            }
+          ]
+        },
+        {
+          "name": "Properties",
+          "superClass": [
+            "Element"
+          ],
+          "properties": [
+            {
+              "name": "values",
+              "type": "Property",
+              "isMany": true
+            }
+          ]
+        },
+        {
+          "name": "Property",
+          "superClass": [
+            "Element"
+          ],
+          "properties": [
+            {
+              "name": "id",
+              "type": "String",
+              "isAttr": true
+            },
+            {
+              "name": "name",
+              "type": "String",
+              "isAttr": true
+            },
+            {
+              "name": "value",
+              "type": "String",
+              "isAttr": true
+            }
+          ]
+        },
+        {
+          "name": "FormalExpression",
+          "isAbstract": true,
+          "extends": [
+            "bpmn:FormalExpression"
+          ],
+          "properties": [
+            {
+              "name": "resource",
+              "isAttr": true,
+              "type": "String"
+            },
+            {
+              "name": "advancedType",
+              "isAttr": true,
+              "type": "String"
+            }
+          ]
+        },
+        {
+      "name": "ExtensionProps",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "extensionProps",
+          "type": "ExtensionProps"
+        },
+        {
+          "name": "connectorId",
+          "type": "String"
+        },
+        {
+          "name": "values",
+          "isMany": true,
+          "type": "ExtensionProp"
+        }
+      ]
+    },
+    {
+      "name": "ExtensionProp",
+      "superClass": [ "ExtensionParameter" ]
+    },
+    {
+      "name": "ExtensionParameter",
+      "properties": [
+        {
+          "name": "name",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "value",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "definition",
+          "type": "ExtensionParameterDefinition"
+        }
+      ]
+    },
+    {
+      "name": "ExtensionParameterDefinition",
+      "isAbstract": true
+    },
+    {
+      "name": "List",
+      "superClass": [ "ExtensionParameterDefinition" ],
+      "properties": [
+        {
+          "name": "items",
+          "isMany": true,
+          "type": "ExtensionParameterDefinition"
+        }
+      ]
+    },
+    {
+      "name": "Map",
+      "superClass": [ "ExtensionParameterDefinition" ],
+      "properties": [
+        {
+          "name": "entries",
+          "isMany": true,
+          "type": "Entry"
+        }
+      ]
+    },
+    {
+      "name": "Entry",
+      "properties": [
+        {
+          "name": "key",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "value",
+          "isBody": true,
+          "type": "String"
+        },
+        {
+          "name": "definition",
+          "type": "ExtensionParameterDefinition"
+        }
+      ]
+    },
+    {
+      "name": "Value",
+      "superClass": [
+        "ExtensionParameterDefinition"
+      ],
+      "properties": [
+        {
+          "name": "id",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "name",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "value",
+          "isBody": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "name": "FormProperty",
+      "superClass": [ "Element" ],
+      "properties": [
+        {
+          "name": "id",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "required",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "readable",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "writable",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "variable",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "expression",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "datePattern",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "default",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "values",
+          "type": "Value",
+          "isMany": true
+        }
+      ]
+    },
+    {
+      "name": "FormData",
+      "superClass": [ "Element" ],
+      "properties": [
+        {
+          "name": "fields",
+          "type": "FormField",
+          "isMany": true
+        }
+      ]
+    },
+    {
+      "name": "FormField",
+      "superClass": [ "Element" ],
+      "properties": [
+        {
+          "name": "id",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "label",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "datePattern",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "properties",
+          "type": "Properties"
+        },
+        {
+          "name": "validation",
+          "type": "Validation"
+        },
+        {
+          "name": "values",
+          "type": "Value",
+          "isMany": true
+        }
+      ]
+    },
+    {
+      "name": "Validation",
+      "superClass": [ "Element" ],
+      "properties": [
+        {
+          "name": "constraints",
+          "type": "Constraint",
+          "isMany": true
+        }
+      ]
+    },
+    {
+      "name": "Constraint",
+      "superClass": [ "Element" ],
+      "properties": [
+        {
+          "name": "name",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "config",
+          "type": "String",
+          "isAttr": true
+        }
+      ]
+    },
+    {
+      "name": "ExecutionListener",
+      "superClass": [ "Element" ],
+      "properties": [
+        {
+          "name": "expression",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "class",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "delegateExpression",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "event",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "script",
+          "type": "Script"
+        },
+        {
+          "name": "field",
+          "type": "Field"
+        }
+      ]
+    },
+    {
+      "name": "CallActivity",
+      "extends": [ "bpmn:CallActivity" ],
+      "properties": [
+        {
+          "name": "calledElementBinding",
+          "isAttr": true,
+          "type": "String",
+          "default": "latest"
+        },
+        {
+          "name": "calledElementVersion",
+          "isAttr": true,
+          "type": "Integer"
+        },
+        {
+          "name": "caseRef",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "caseBinding",
+          "isAttr": true,
+          "type": "String",
+          "default": "latest"
+        },
+        {
+          "name": "caseVersion",
+          "isAttr": true,
+          "type": "Integer"
+        }
+      ]
+    },
+    {
+      "name": "ServiceTaskLike",
+      "extends": [
+        "bpmn:ServiceTask",
+        "bpmn:BusinessRuleTask",
+        "bpmn:SendTask",
+        "bpmn:MessageEventDefinition"
+      ],
+      "properties": [
+        {
+          "name": "expression",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "class",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "delegateExpression",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "resultVariable",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+  ],
+  "emumerations": [ ]
+}

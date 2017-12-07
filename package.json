@@ -1,0 +1,83 @@
+{
+  "name": "runbpm-bpmn-moddle",
+  "version": "0.0.1",
+  "description": "RunBPM moddle extensions for BPMN 2.0",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liguo-zhang/runbpm-bpmn-moddle.git"
+  },
+  "keywords": [
+    "bpmn",
+    "moddle",
+    "bpmn20",
+    "runbpm",
+    "meta-model"
+  ],
+  "author": {
+    "name": "Li Guo Zhang",
+    "url": "https://github.com/liguo-zhang"
+  },
+  "contributors": [
+    {
+      "name": "runbpm contributors",
+      "url": "https://github.com/liguo-zhang"
+    }
+  ],
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "async": "^1.5.0",
+    "chai": "^1.9.1",
+    "glob": "^6.0.1",
+    "grunt": "^0.4.2",
+    "grunt-contrib-jshint": "^0.7.2",
+    "grunt-contrib-watch": "^0.5.0",
+    "grunt-mocha-test": "^0.11.0",
+    "grunt-release": "^0.13.0",
+    "jsondiffpatch": "^0.1.4",
+    "load-grunt-tasks": "^0.3.0",
+    "xsd-schema-validator": "^0.3.0",
+    "bpmn-moddle": "^0.10.0"
+  },
+  "bugs": {
+    "url": "https://github.com/liguo-zhang/runbpm-bpmn-moddle/issues"
+  },
+  "homepage": "https://github.com/liguo-zhang/runbpm-bpmn-moddle#readme",
+  "_shasum": "aa54646ee22663991f504ffbbb05fd49056dc4e3",
+  "_from": "runbpm-bpmn-moddle@>=0.0.1 <0.0.2",
+  "_npmVersion": "2.11.3",
+  "_nodeVersion": "0.12.7",
+  "_npmUser": {
+    "name": "liguo-zhang",
+    "email": "todo@todo.com"
+  },
+  "dist": {
+    "shasum": "147bb98cc32d95908dcd2a0fdce968fb6ae576a9",
+    "tarball": "http://todo.gz"
+  },
+  "maintainers": [
+    {
+      "name": "liguo-zhang",
+      "email": "todo@todo.com"
+    },
+    {
+      "name": "liguo-zhang",
+      "email": "todo@todo.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-9-west.internal.npmjs.com",
+    "tmp": "tmp/todo"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "_resolved": "https://todo.gz",
+  "main": "index.js",
+  "readme": "# runbpm-bpmn-moddle\n\n[![Build Status](https://travis-ci.org/liguo-zhang/runbpm-bpmn-moddle.svg)](https://travis-ci.org/liguo-zhang/runbpm-bpmn-moddle)\n\nThis project defines the [RunBPM](https://runbpm.com) namespace extensions for BPMN 2.0 as a [moddle](https://github.com/bpmn-io/moddle) descriptor.\n\n\n## Usage\n\nUse it together with [bpmn-moddle](https://github.com/bpmn-io/bpmn-moddle) to validate RunBPM BPMN 2.0 extensions.\n\n```javascript\nvar BpmnModdle = require('bpmn-moddle');\n\nvar camundaModdle = require('runbpm-bpmn-moddle/resources/runbpm');\n\nvar moddle = new BpmnModdle({ runbpm: camundaModdle });\n\nvar serviceTask = moddle.create('bpmn:ServiceTask', {\n  'javaDelegate': 'my.company.SomeDelegate'\n});\n```\n\n\n## Building the Project\n\nYou need [grunt](http://gruntjs.com) to build the project.\n\nTo run the test suite that includes XSD schema validation you must have a Java JDK installed and properly exposed through the `JAVA_HOME` variable.\n\nExecute the test via\n\n```\ngrunt test\n```\n\nPerform a complete build of the application via\n\n```\ngrunt\n```\n\n\n## License\n\nUse under the terms of the [Apache Licenses 2.0](http://www.apache.org/licenses/LICENSE-2.0).\n",
+  "readmeFilename": "README.md",
+  "gitHead": "9680fbba8f363bc9e3fcbf2072685e0e22fd2898",
+  "_id": "runbpm-bpmn-moddle@0.0.1"
+}
